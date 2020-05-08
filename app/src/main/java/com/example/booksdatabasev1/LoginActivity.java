@@ -24,6 +24,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -52,7 +53,10 @@ public class LoginActivity extends AppCompatActivity {
         //check if user is logged in
 
         SessionManagement sessionManagement = new SessionManagement(LoginActivity.this);
-        int userID = sessionManagement.getSession();
+
+        Map<String,String> userPref = sessionManagement.getSession();
+
+        int userID = Integer.parseInt(userPref.get("id"));
 
         if(userID != -1){ //user is logged
             moveToMainActivity();
